@@ -48,4 +48,15 @@ public class GildedRoseTest
         Assert.That(items[0].Quality, Is.EqualTo(8), "Item quality should decrease by 2 after SellIn date.");
     }
 
+    [Test]
+    public void Item_Quality_Never_Negative()
+    {
+        var items = new List<Item> { new Item { Name = "foo", SellIn = 5, Quality = 0 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(0), "Item quality should never be negative.");
+    }
+
 }
