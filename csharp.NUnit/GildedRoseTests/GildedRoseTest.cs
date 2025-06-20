@@ -94,4 +94,15 @@ public class GildedRoseTest
         Assert.That(items[0].SellIn, Is.EqualTo(4), "SellIn should decrement by 1.");
     }
 
+    [Test]
+    public void Sulfuras_SellIn_And_Quality_Remain_Unchanged()
+    {
+        var items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].SellIn, Is.EqualTo(10), "Sulfuras SellIn should remain unchanged.");
+        Assert.That(items[0].Quality, Is.EqualTo(80), "Sulfuras quality should remain constant.");
+    }
 }
