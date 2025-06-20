@@ -70,5 +70,17 @@ public class GildedRoseTest
         Assert.That(items[0].Quality, Is.EqualTo(11), "Aged Brie quality should increase by 1 before SellIn date.");
     }
 
+    [Test]
+    public void AgedBrie_QualityIncreasesTwiceAfterSellByDate()
+    {
+        var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 10 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(12), "Aged Brie quality should increase by 2 once SellIn has passed.");
+        Assert.That(items[0].SellIn, Is.EqualTo(-1), "SellIn should decrement by 1.");
+    }
+
 
 }
