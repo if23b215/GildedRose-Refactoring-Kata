@@ -59,4 +59,16 @@ public class GildedRoseTest
         Assert.That(items[0].Quality, Is.EqualTo(0), "Item quality should never be negative.");
     }
 
+    [Test]
+    public void AgedBrie_QualityIncreasesByOneBeforeSellByDate()
+    {
+        var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 5, Quality = 10 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(11), "Aged Brie quality should increase by 1 before SellIn date.");
+    }
+
+
 }
