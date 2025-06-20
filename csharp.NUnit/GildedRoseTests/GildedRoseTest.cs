@@ -82,5 +82,16 @@ public class GildedRoseTest
         Assert.That(items[0].SellIn, Is.EqualTo(-1), "SellIn should decrement by 1.");
     }
 
+    [Test]
+    public void AgedBrie_QualityDoesNotExceedFiftyBeforeSellByDate()
+    {
+        var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 5, Quality = 50 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(50), "Aged Brie quality should never exceed 50.");
+        Assert.That(items[0].SellIn, Is.EqualTo(4), "SellIn should decrement by 1.");
+    }
 
 }
