@@ -129,4 +129,16 @@ public class GildedRoseTest
         Assert.That(items[0].Quality, Is.EqualTo(22), "Backstage passes quality should increase by 2 when SellIn is 10 or less and greater than 5.");
         Assert.That(items[0].SellIn, Is.EqualTo(9), "SellIn should decrement by 1.");
     }
+
+    [Test]
+    public void BackstagePasses_Quality_Increases_By_Three_When_SellIn_Between_One_And_Five()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 20 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(23), "Backstage passes quality should increase by 3 when SellIn is 5 or less and greater than 0.");
+        Assert.That(items[0].SellIn, Is.EqualTo(4), "SellIn should decrement by 1.");
+    }
 }
